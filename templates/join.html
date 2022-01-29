@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title></title>
+{% endblock %}
+
+
+
+{% block body %}
+    <h1>Login Page</h1>
+    <form action="/join" method="post">
+        <label for="name">Display Name:</label><br>
+        <input type="text" id="name" name="name"><br>
+        <!-- <label for="lname">Last name:</label><br>
+        <input type="text" id="lname" name="lname"> -->
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <a href="{{ url_for('join') }}">Joining Chat Room</a>
+{% endblock %}
