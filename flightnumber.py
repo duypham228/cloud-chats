@@ -9,4 +9,8 @@ api_result = requests.get('http://api.aviationstack.com/v1/flights', params)
 
 api_response = api_result.json()
 
-print(api_response)
+api_response = str(api_response)
+
+api_response = api_response.split(',')
+
+print(*api_response, sep = "\n")
