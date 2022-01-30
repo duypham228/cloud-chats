@@ -9,6 +9,7 @@ Flask==2.0.2
 Flask-SocketIO==5.1.1
 geojson==2.5.0
 ghp-import==2.0.2
+googlemaps==4.5.3
 idna==3.3
 importlib-metadata==4.8.2
 itsdangerous==2.0.1

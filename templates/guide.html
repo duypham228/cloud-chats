@@ -28,6 +28,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Dashboard</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
   </head>
 
   <nav class="navbar" role="navigation" aria-label="main navigation">
@@ -79,18 +80,18 @@
           <div class="card-content">
             <div class="content">
               <h1 class="title is-3" id="weather">
-                Weather of Houston 
+                Weather of {{ weather["city"] }} 
               </h1>
               
            
               <h2 class="title is-5 is-spaced">
-                Currrent Temperatrue: 47
+                Currrent Temperatrue: {{ weather["temp"]["temp"] }}
               </h2>
               <h3 class="title is-6">
-                Scattered clouds
+                {{ weather["status"] }}
               </h3>
               <h4 class="subtitle is-7">
-                Updated: 1/30/2022,5:47:36 AM 
+                {{ weather["dstatus"] }}
               </h4>
 
               <div class="columns">
@@ -100,26 +101,26 @@
                 </div>
                 <div class="column">
                     <strong>Highest/Lowest</strong>
-                    <p>50/40</p>
+                    <p>{{ weather["temp"]["temp_max"] }}/{{ weather["temp"]["temp_min"] }}</p>
                 </div>
                 <div class="column">
                     <strong>Feels like</strong>
-                    <p>44</p>
+                    <p>{{ weather["temp"]["feels_like"] }}</p>
                 </div>
               </div>
 
               <div class="columns">
                 <div class="column">
                   <strong>Humidity</strong>
-                  <p>68%</p>
+                  <p>{{ weather["humidity"] }}%</p>
                 </div>
                 <div class="column">
                     <strong>Wind</strong>
-                    <p>5.99 mph</p>
+                    <p>{{ weather["wind"]["speed"] }} mph</p>
                 </div>
                 <div class="column">
                     <strong>Visibility</strong>
-                    <p>10 km</p>
+                    <p>{{ weather["visibility"] }} km</p>
                 </div>
               </div>
 
@@ -134,7 +135,6 @@
             </div>
         </div>
     </section>
-
     <section class="section" style="background-color: #f0f0f8;">
         <div class="card">
           <div class="card-content">
@@ -154,56 +154,17 @@
                 </thead>
                 
                 <tbody>
+                  {% for i in range(restaurants|length) %}
                   <tr>
-                    <th>1</th>
-                    <td><a href="https://en.wikipedia.org/wiki/Leicester_City_F.C." title="Leicester City F.C.">Leicester City</a> <strong>(C)</strong>
-                    </td>
-                    <td>38</td>
-                    <td>23</td>
-                    <td>Qualification for the <a href="https://en.wikipedia.org/wiki/2016%E2%80%9317_UEFA_Champions_League#Group_stage" title="2016–17 UEFA Champions League">Champions League group stage</a></td>
+                    <td>{{ i + 1 }}</td>
+                    <td><a href="" title={{ restaurants[i]["name"] }}>{{ restaurants[i]["name"] }}</a></td>
+                    <td>{{ restaurants[i]["rating"] }}</td>
+                    <td>{{ restaurants[i]["user_ratings_total"] }}</td>
+                    <td>{{ restaurants[i]["vicinity"] }}</td>
                   </tr>
-                  <tr>
-                    <th>2</th>
-                    <td><a href="https://en.wikipedia.org/wiki/Arsenal_F.C." title="Arsenal F.C.">Arsenal</a></td>
-                    <td>38</td>
-                    <td>20</td>
-                    <td>Qualification for the <a href="https://en.wikipedia.org/wiki/2016%E2%80%9317_UEFA_Champions_League#Group_stage" title="2016–17 UEFA Champions League">Champions League group stage</a></td>
-                  </tr>
-                  <tr>
-                    <th>3</th>
-                    <td><a href="https://en.wikipedia.org/wiki/Tottenham_Hotspur_F.C." title="Tottenham Hotspur F.C.">Tottenham Hotspur</a></td>
-                    <td>38</td>
-                    <td>19</td>
-                    <td>Qualification for the <a href="https://en.wikipedia.org/wiki/2016%E2%80%9317_UEFA_Champions_League#Group_stage" title="2016–17 UEFA Champions League">Champions League group stage</a></td>
-                  </tr>
-                  <tr>
-                    <th>4</th>
-                    <td><a href="https://en.wikipedia.org/wiki/Manchester_City_F.C." title="Manchester City F.C.">Manchester City</a></td>
-                    <td>38</td>
-                    <td>19</td>
-                    <td>Qualification for the <a href="https://en.wikipedia.org/wiki/2016%E2%80%9317_UEFA_Champions_League#Play-off_round" title="2016–17 UEFA Champions League">Champions League play-off round</a></td>
-                  </tr>
-                  <tr>
-                    <th>5</th>
-                    <td><a href="https://en.wikipedia.org/wiki/Manchester_United_F.C." title="Manchester United F.C.">Manchester United</a></td>
-                    <td>38</td>
-                    <td>19</td>
-                    <td>Qualification for the <a href="https://en.wikipedia.org/wiki/2016%E2%80%9317_UEFA_Europa_League#Group_stage" title="2016–17 UEFA Europa League">Europa League group stage</a></td>
-                  </tr>
-                  <tr>
-                    <th>6</th>
-                    <td><a href="https://en.wikipedia.org/wiki/Southampton_F.C." title="Southampton F.C.">Southampton</a></td>
-                    <td>38</td>
-                    <td>18</td>
-                    <td>Qualification for the <a href="https://en.wikipedia.org/wiki/2016%E2%80%9317_UEFA_Europa_League#Group_stage" title="2016–17 UEFA Europa League">Europa League group stage</a></td>
-                  </tr>
-                  <tr>
-                    <th>7</th>
-                    <td><a href="https://en.wikipedia.org/wiki/West_Ham_United_F.C." title="West Ham United F.C.">West Ham United</a></td>
-                    <td>38</td>
-                    <td>16</td>
-                    <td>Qualification for the <a href="https://en.wikipedia.org/wiki/2016%E2%80%9317_UEFA_Europa_League#Third_qualifying_round" title="2016–17 UEFA Europa League">Europa League third qualifying round</a></td>
-                  </tr>
+                  {% endfor %}
+                  
+                  
                   
                 </tbody>
               </table>
@@ -231,56 +192,16 @@
                 </thead>
                 
                 <tbody>
+                  {% for poi in pois %}
                   <tr>
                     <th>1</th>
-                    <td><a href="https://en.wikipedia.org/wiki/Leicester_City_F.C." title="Leicester City F.C.">Leicester City</a> <strong>(C)</strong>
+                    <td><a href="" title={{ poi["name"] }}>{{ poi["name"] }}</a>
                     </td>
-                    <td>38</td>
-                    <td>23</td>
-                    <td>Qualification for the <a href="https://en.wikipedia.org/wiki/2016%E2%80%9317_UEFA_Champions_League#Group_stage" title="2016–17 UEFA Champions League">Champions League group stage</a></td>
+                    <td>{{ poi["rating"] }}</td>
+                    <td>{{ poi["user_ratings_total"] }}</td>
+                    <td>{{ poi["vicinity"] }}</td>
                   </tr>
-                  <tr>
-                    <th>2</th>
-                    <td><a href="https://en.wikipedia.org/wiki/Arsenal_F.C." title="Arsenal F.C.">Arsenal</a></td>
-                    <td>38</td>
-                    <td>20</td>
-                    <td>Qualification for the <a href="https://en.wikipedia.org/wiki/2016%E2%80%9317_UEFA_Champions_League#Group_stage" title="2016–17 UEFA Champions League">Champions League group stage</a></td>
-                  </tr>
-                  <tr>
-                    <th>3</th>
-                    <td><a href="https://en.wikipedia.org/wiki/Tottenham_Hotspur_F.C." title="Tottenham Hotspur F.C.">Tottenham Hotspur</a></td>
-                    <td>38</td>
-                    <td>19</td>
-                    <td>Qualification for the <a href="https://en.wikipedia.org/wiki/2016%E2%80%9317_UEFA_Champions_League#Group_stage" title="2016–17 UEFA Champions League">Champions League group stage</a></td>
-                  </tr>
-                  <tr>
-                    <th>4</th>
-                    <td><a href="https://en.wikipedia.org/wiki/Manchester_City_F.C." title="Manchester City F.C.">Manchester City</a></td>
-                    <td>38</td>
-                    <td>19</td>
-                    <td>Qualification for the <a href="https://en.wikipedia.org/wiki/2016%E2%80%9317_UEFA_Champions_League#Play-off_round" title="2016–17 UEFA Champions League">Champions League play-off round</a></td>
-                  </tr>
-                  <tr>
-                    <th>5</th>
-                    <td><a href="https://en.wikipedia.org/wiki/Manchester_United_F.C." title="Manchester United F.C.">Manchester United</a></td>
-                    <td>38</td>
-                    <td>19</td>
-                    <td>Qualification for the <a href="https://en.wikipedia.org/wiki/2016%E2%80%9317_UEFA_Europa_League#Group_stage" title="2016–17 UEFA Europa League">Europa League group stage</a></td>
-                  </tr>
-                  <tr>
-                    <th>6</th>
-                    <td><a href="https://en.wikipedia.org/wiki/Southampton_F.C." title="Southampton F.C.">Southampton</a></td>
-                    <td>38</td>
-                    <td>18</td>
-                    <td>Qualification for the <a href="https://en.wikipedia.org/wiki/2016%E2%80%9317_UEFA_Europa_League#Group_stage" title="2016–17 UEFA Europa League">Europa League group stage</a></td>
-                  </tr>
-                  <tr>
-                    <th>7</th>
-                    <td><a href="https://en.wikipedia.org/wiki/West_Ham_United_F.C." title="West Ham United F.C.">West Ham United</a></td>
-                    <td>38</td>
-                    <td>16</td>
-                    <td>Qualification for the <a href="https://en.wikipedia.org/wiki/2016%E2%80%9317_UEFA_Europa_League#Third_qualifying_round" title="2016–17 UEFA Europa League">Europa League third qualifying round</a></td>
-                  </tr>
+                  {% endfor %}
                   
                 </tbody>
               </table>

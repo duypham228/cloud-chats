@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+  <style>
+    #lower{
+      background-color: #FAFAFF;
+    }
+
+
+    #fix{
+      margin: 50px;
+    }
+
+    .box{
+      width:200px;
+      height: 200px;
+    }
+
+    #icon{
+      margin: auto;
+    }
+
+    #flight-info{
+      background-color: white;
+    }
+  </style>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FAQ</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+  </head>
+
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item" >
+        <strong>Cloud Chats ☁️</strong></a>
+      </a>
+  
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+  
+    <div id="navbarBasicExample" class="navbar-menu">
+      <div class="navbar-start">
+        <a class="navbar-item" href={{ url_for("dashboard") }}>
+          Dashboard
+        </a>
+  
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link">
+            FAQs
+          </a>
+  
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#yum">
+                Food/Beverges
+            </a>
+            <a class="navbar-item" href="#internet">
+                Internet  
+            </a>
+            <a class="navbar-item" href="#covid">
+                COVID
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <body>
+    <section class="section" style="background-color:#FAFAFF;">
+        <div class="card" style="margin-bottom: 20px;">
+          <div class="card-content">
+            <div class="content">
+              <h1 class="title is-3" id="yum">
+                Food/Bevrages 
+              </h1>
+              <hr>
+              <h2 class="title is-5">
+                Will food be provided on this flight?
+              </h2>
+              <h3 class="subtitle is-6">
+                💡 Yes! We will be providing you with free snacks.
+              </h3>
+
+              <br>
+
+              <h4 class="title is-5">
+                Will beverages be provided on this flight?
+              </h4>
+              <h3 class="subtitle is-6">
+                💡 Yes! We will be providing you with a varity of beverages free of charge.
+              </h3>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+            <div class="card-content">
+                <div class="content">
+                  <h1 class="title is-3" id="internet">
+                    Internet 
+                  </h1>
+                  <hr>
+                  <h2 class="title is-5">
+                    Is there WIFI avaliable on this flight?
+                  </h2>
+                  <h3 class="subtitle is-6">
+                    💡 Of course! You can connect to the wifi simply by clicking on the wifi name.
+                  </h3>
+    
+                  <br>
+    
+                  <h4 class="title is-5">
+                    Do I need to pay for the internet access?
+                  </h4>
+                  <h3 class="subtitle is-6">
+                    💡 We do have a free wifi option. However, if you would like to access faster internet, we do have an option for you to purchase.
+                  </h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" style="margin-top: 20px;">
+            <div class="card-content">
+                <div class="content">
+                  <h1 class="title is-3" id="covid">
+                    COVID-19 
+                  </h1>
+                  <hr>
+                  <h2 class="title is-5">
+                    Is mask mandatory for the flight?
+                  </h2>
+                  <h3 class="subtitle is-6">
+                    💡 Yes, you will need to make sure your mask covers your mouth and nose at all times for teh duration of the flight.
+                  </h3>
+    
+                  <br>
+    
+                  <h4 class="title is-5">
+                    If I am fully vaccinated, do I still need to wear a mask?
+                  </h4>
+                  <h3 class="subtitle is-6">
+                    💡 Great to hear that, but unfortuntely, yes. 
+                  </h3>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+  </body>
+</html>
