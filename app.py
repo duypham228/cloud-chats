@@ -84,9 +84,10 @@ def guide():
     params["flight_iata"]
     return render_template("guide.html", flight_information=flight_information)
 
-@app.route('/attendant',methods =["GET","POST"]):
+@app.route('/attendant',methods =["GET","POST"])
 def attendant():
     assistance_items = ["order","help","medical"]
+    return render_template
 
 
 
