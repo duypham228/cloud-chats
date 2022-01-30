@@ -22,18 +22,28 @@
     #flight-info{
       background-color: white;
     }
+
+    
   </style>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Dashboard</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+    
+
   </head>
 
   <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
       <a class="navbar-item" style=";">
+<<<<<<< HEAD
         <strong>Cloud Chats ☁️</strong>
+=======
+        <strong>Cloud Chats </strong></a>
+>>>>>>> weatherdone
       </a>
   
       <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -45,37 +55,27 @@
   
     <div id="navbarBasicExample" class="navbar-menu">
       <div class="navbar-start">
-        <a class="navbar-item" href="dashboard.html">
+        <a class="navbar-item" href={{ url_for("dashboard") }}>
           Dashboard
         </a>
   
         <div class="navbar-item has-dropdown is-hoverable">
           <a class="navbar-link">
-            List of Travel Guides
+            Travel Guides
           </a>
   
           <div class="navbar-dropdown">
-            <a class="navbar-item">
-              Restruant  
+            <a class="navbar-item" href="#weather">
+                Weather 
             </a>
-            <a class="navbar-item">
-              Attractions
+            <a class="navbar-item" href="#restaurant">
+                Restaurant  
             </a>
-            <a class="navbar-item">
-              Weather 
+            <a class="navbar-item" href="#attraction">
+                Attractions
             </a>
-          </div>
-        </div>
-      </div>
-  
-      <div class="navbar-end">
-        <div class="navbar-item">
-          <div class="buttons">
-            <a class="button is-primary">
-              <strong>Sign up</strong>
-            </a>
-            <a class="button is-light">
-              Log in
+            <a class="navbar-item" href="#hotel">
+                Hotels
             </a>
           </div>
         </div>
@@ -84,33 +84,258 @@
   </nav>
 
   <body>
-    <section class="section has-text-centered" style="background-color:#f0f0f8;">
+    <section class="section" style="background-color:#FAFAFF;">
         <div class="card">
           <div class="card-content">
             <div class="content">
-              <h1 class="title is-2">
-                Flight Information
+              <h1 class="title is-3" id="weather">
+                Weather of {{ weather["city"] }} 
               </h1>
-              <br></div>
+           
               <h2 class="title is-5 is-spaced">
-                Saturday, January 29, 2023
+                Currrent Temperatrue: {{ weather["temp"]["temp"] }}
               </h2>
-              
-              <h3 class="title is-3 is-spaced">
-                DFW  &nbsp  &nbsp  ➤  &nbsp &nbsp HOU
+              <h3 class="title is-6">
+                {{ weather["status"] }}
               </h3>
-              <h4 class="subtitle is-6">
-                Dallas Forth Worth International to Houston George Bush International
+              <h4 class="subtitle is-7">
+                {{ weather["dstatus"] }}
               </h4>
+
+              <div class="columns">
+                <div class="column">
+                  <strong>Degree Type</strong>
+                  <p>Fahrenheit</p>
+                </div>
+                <div class="column">
+                    <strong>Highest/Lowest</strong>
+                    <p>{{ weather["temp"]["temp_max"] }}/{{ weather["temp"]["temp_min"] }}</p>
+                </div>
+                <div class="column">
+                    <strong>Feels like</strong>
+                    <p>{{ weather["temp"]["feels_like"] }}</p>
+                </div>
+              </div>
+
+              <div class="columns">
+                <div class="column">
+                  <strong>Humidity</strong>
+                  <p>{{ weather["humidity"] }}%</p>
+                </div>
+                <div class="column">
+                    <strong>Wind</strong>
+                    <p>{{ weather["wind"]["speed"] }} mph</p>
+                </div>
+                <div class="column">
+                    <strong>Visibility</strong>
+                    <p>{{ weather["visibility"] }} km</p>
+                </div>
+              </div>
+
             </div>
           </div>
         </div>
         <div class="card" style="margin-top: 20px;">
             <div class="card-content">
             <div class="content">
-                
+                <h1>Forecast of {{ weather["city"] }} </h1>
+                <canvas id="myChart" width="1500" height="400"></canvas>
             </div>
         </div>
     </section>
+    <section class="section" style="background-color: #f0f0f8;">
+        <div class="card">
+          <div class="card-content">
+            <div class="content">
+              <h1 class="title is-3" id="restaurant">
+                Restaurants
+              </h1>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th><abbr title="Number">Num</abbr></th>
+                    <th>Name</th>
+                    <th><abbr title="Rating">Rating</abbr></th>
+                    <th><abbr title="Reviews">Reviews</abbr></th>
+                    <th>Address</th>
+                  </tr>
+                </thead>
+                
+                <tbody>
+                  {% for i in range(restaurants|length) %}
+                  <tr>
+                    <td>{{ i + 1 }}</td>
+                    <td><a href="" title={{ restaurants[i]["name"] }}>{{ restaurants[i]["name"] }}</a></td>
+                    <td>{{ restaurants[i]["rating"] }}</td>
+                    <td>{{ restaurants[i]["user_ratings_total"] }}</td>
+                    <td>{{ restaurants[i]["vicinity"] }}</td>
+                  </tr>
+                  {% endfor %}
+                  
+                  
+                  
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+    </section>
+
+    <section class="section" style="background-color:#FAFAFF;">
+        <div class="card">
+          <div class="card-content">
+            <div class="content">
+              <h1 class="title is-3" id="attraction">
+                Attractions
+              </h1>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th><abbr title="Number">Num</abbr></th>
+                    <th>Name</th>
+                    <th><abbr title="Rating">Rating</abbr></th>
+                    <th><abbr title="Reviews">Reviews</abbr></th>
+                    <th>Address</th>
+                  </tr>
+                </thead>
+                
+                <tbody>
+                  {% for poi in pois %}
+                  <tr>
+                    <th>1</th>
+                    <td><a href="" title={{ poi["name"] }}>{{ poi["name"] }}</a>
+                    </td>
+                    <td>{{ poi["rating"] }}</td>
+                    <td>{{ poi["user_ratings_total"] }}</td>
+                    <td>{{ poi["vicinity"] }}</td>
+                  </tr>
+                  {% endfor %}
+                  
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+    </section>
+
+    <section class="section" style="background-color:#f0f0f8;">
+        <div class="card">
+          <div class="card-content">
+            <div class="content">
+              <h1 class="title is-3" id="hotel">
+                Hotels
+              </h1>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th><abbr title="Number">Num</abbr></th>
+                    <th>Name</th>
+                    <th><abbr title="Rating">Rating</abbr></th>
+                    <th><abbr title="Reviews">Reviews</abbr></th>
+                    <th>Address</th>
+                  </tr>
+                </thead>
+                
+                <tbody>
+                  <tr>
+                    <th>1</th>
+                    <td><a href="https://en.wikipedia.org/wiki/Leicester_City_F.C." title="Leicester City F.C.">Leicester City</a> <strong>(C)</strong>
+                    </td>
+                    <td>38</td>
+                    <td>23</td>
+                    <td>Qualification for the <a href="https://en.wikipedia.org/wiki/2016%E2%80%9317_UEFA_Champions_League#Group_stage" title="2016–17 UEFA Champions League">Champions League group stage</a></td>
+                  </tr>
+                  <tr>
+                    <th>2</th>
+                    <td><a href="https://en.wikipedia.org/wiki/Arsenal_F.C." title="Arsenal F.C.">Arsenal</a></td>
+                    <td>38</td>
+                    <td>20</td>
+                    <td>Qualification for the <a href="https://en.wikipedia.org/wiki/2016%E2%80%9317_UEFA_Champions_League#Group_stage" title="2016–17 UEFA Champions League">Champions League group stage</a></td>
+                  </tr>
+                  <tr>
+                    <th>3</th>
+                    <td><a href="https://en.wikipedia.org/wiki/Tottenham_Hotspur_F.C." title="Tottenham Hotspur F.C.">Tottenham Hotspur</a></td>
+                    <td>38</td>
+                    <td>19</td>
+                    <td>Qualification for the <a href="https://en.wikipedia.org/wiki/2016%E2%80%9317_UEFA_Champions_League#Group_stage" title="2016–17 UEFA Champions League">Champions League group stage</a></td>
+                  </tr>
+                  <tr>
+                    <th>4</th>
+                    <td><a href="https://en.wikipedia.org/wiki/Manchester_City_F.C." title="Manchester City F.C.">Manchester City</a></td>
+                    <td>38</td>
+                    <td>19</td>
+                    <td>Qualification for the <a href="https://en.wikipedia.org/wiki/2016%E2%80%9317_UEFA_Champions_League#Play-off_round" title="2016–17 UEFA Champions League">Champions League play-off round</a></td>
+                  </tr>
+                  <tr>
+                    <th>5</th>
+                    <td><a href="https://en.wikipedia.org/wiki/Manchester_United_F.C." title="Manchester United F.C.">Manchester United</a></td>
+                    <td>38</td>
+                    <td>19</td>
+                    <td>Qualification for the <a href="https://en.wikipedia.org/wiki/2016%E2%80%9317_UEFA_Europa_League#Group_stage" title="2016–17 UEFA Europa League">Europa League group stage</a></td>
+                  </tr>
+                  <tr>
+                    <th>6</th>
+                    <td><a href="https://en.wikipedia.org/wiki/Southampton_F.C." title="Southampton F.C.">Southampton</a></td>
+                    <td>38</td>
+                    <td>18</td>
+                    <td>Qualification for the <a href="https://en.wikipedia.org/wiki/2016%E2%80%9317_UEFA_Europa_League#Group_stage" title="2016–17 UEFA Europa League">Europa League group stage</a></td>
+                  </tr>
+                  <tr>
+                    <th>7</th>
+                    <td><a href="https://en.wikipedia.org/wiki/West_Ham_United_F.C." title="West Ham United F.C.">West Ham United</a></td>
+                    <td>38</td>
+                    <td>16</td>
+                    <td>Qualification for the <a href="https://en.wikipedia.org/wiki/2016%E2%80%9317_UEFA_Europa_League#Third_qualifying_round" title="2016–17 UEFA Europa League">Europa League third qualifying round</a></td>
+                  </tr>
+                  
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+    </section>
+    <script>
+      Chart.defaults.global.responsive = false;
+ 
+      // define the chart data
+      var chartData = {
+        labels : [ {% for item in labels %}
+        "{{ item }}",
+        {% endfor %}],
+        datasets : [{
+          label: '{{ legend }}',
+          fill: true,
+          lineTension: 0.1,
+          backgroundColor: "rgba(75,192,192,0.4)",
+          borderColor: "rgba(75,192,192,1)",
+          borderCapStyle: 'butt',
+          borderDash: [],
+          borderDashOffset: 0.0,
+          borderJoinStyle: 'miter',
+          pointBorderColor: "rgba(75,192,192,1)",
+          pointBackgroundColor: "#fff",
+          pointBorderWidth: 1,
+          pointHoverRadius: 5,
+          pointHoverBackgroundColor: "rgba(75,192,192,1)",
+          pointHoverBorderColor: "rgba(220,220,220,1)",
+          pointHoverBorderWidth: 2,
+          pointRadius: 1,
+          pointHitRadius: 10,
+          data : [{% for item in values %}
+          {{ item }},
+          {% endfor %}],
+          spanGaps: false
+        }]
+      }
+        
+      // get chart canvas
+      var ctx = document.getElementById("myChart").getContext("2d");
+        
+      // create the chart using the chart canvas
+      var myChart = new Chart(ctx, {
+      type: 'line',
+      data: chartData,
+      });
+    </script>
 </body>
-</html>>
+</html>
