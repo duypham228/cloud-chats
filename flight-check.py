@@ -1,3 +1,6 @@
+import iso8601
+from datetime import datetime, timedelta
+import datetime as dt
 import requests
 params = {
     "key":"c71fff2ce5",
@@ -13,3 +16,10 @@ print(r.json()["current"]["temp_f"])
 
 
 r=requests.get("https://api.yelp.com/v3/businesses/search")
+
+def get_date_object(date_string):
+  return iso8601.parse_date(date_string)
+
+now = datetime.now()
+flight_time = (get_date_object("2022-01-29T10:11:00+00:00"))
+print(flight_time.strftime('%H:%M:%S'))

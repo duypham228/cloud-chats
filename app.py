@@ -9,7 +9,7 @@ date = now.strftime("%Y")+"-"+now.strftime("%m")+"-"+now.strftime("%d")
 params = {
   'access_key': '2d81d1352add1055528f544eb552ac04',
 }
-
+flight_information  = {}
 def find_city(iata):
     params = {
     "key":"c71fff2ce5",
@@ -25,7 +25,7 @@ def start():
         print(params)
         api_result = requests.get('http://api.aviationstack.com/v1/flights', params)
         api_response = api_result.json()
-        flight_information = None
+        global flight_information
         for flights in api_response["data"]:
             if flights["flight_date"] == date:
                 flight_information = flights
@@ -36,10 +36,9 @@ def start():
         flight_information = {'flight': {'iata': None}, 'arrival': {'airport': None, 'estimated': None, 'name': None}, 'airline':{'name':None}}
         return render_template('index.html', hidden="is-hidden", flight_information=flight_information, placeholder="Enter Flight IATA")
     
-@app.route('/dashboard', methods = ["GET","POST"])
+@app.route('/dashboard', methods = ["GET"])
 def dashboard():
-    return render_template("dashboard.html")
-
+    return render_template("dashboard.html", flight_information=flight_information)
 
 if __name__ == "__main__":
     app.run(debug=True)

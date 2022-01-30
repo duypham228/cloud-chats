@@ -74,18 +74,18 @@
       <div class="card-content">
         <div class="content">
           <h1 class="title is-2">
-            Flight Information
+            Flight IATA {{flight_information["flight"]["iata"]}}
           </h1>
           <br></div>
           <h2 class="title is-5 is-spaced">
-            Saturday, January 29, 2023
+            {{flight_information["arrival"]["estimated"]}}
           </h2>
           
           <h3 class="title is-3 is-spaced">
-            DFW  &nbsp  &nbsp  ➤  &nbsp &nbsp HOU
+            {{flight_information["departure"]["iata"]}}  &nbsp  &nbsp  ➤  &nbsp &nbsp {{flight_information["arrival"]["iata"]}}
           </h3>
           <h4 class="subtitle is-6">
-            Dallas Forth Worth International to Houston George Bush International
+            {{flight_information["departure"]["airport"]}} to {{flight_information["arrival"]["airport"]}}
           </h4>
         </div>
       </div>
@@ -95,7 +95,7 @@
       <div class="card-content">
         <div class="content">
           <h1 class="title is-2">
-            Flight Information
+            Flight Information | {{flight_information["flight"]["iata"]}}
           </h1>
           <br></div>
           <h2 class="title is-5 is-spaced">
@@ -106,7 +106,7 @@
             DFW  &nbsp  &nbsp  ➤  &nbsp &nbsp HOU
           </h3>
           <h4 class="subtitle is-6">
-            Dallas Forth Worth International to Houston George Bush International
+            {{flight_information}} to Houston George Bush International
           </h4>
         </div>
       </div>
