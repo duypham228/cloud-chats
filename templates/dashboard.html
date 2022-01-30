@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Dashboard</title>
+{% endblock %}
+
+
+
+{% block body %}
+    <h1>Dashboard</h1>
+    {% for restaurant in restaurants %}
+        Name: {{ restaurant["name"] }}
+        Rating: {{ restaurant["rating"] }}
+        <br>
+    {% endfor %}
+
+    {{ pois }}
+
+
+   
+{% endblock %}

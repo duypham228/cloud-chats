@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title></title>
+{% endblock %}
+
+
+
+{% block body %}
+    <h1>Join  Page</h1>
+    <form action="/ask_attendant" method="post">
+        <label for="name">Display Name:</label><br>
+        <input type="text" id="name" name="name"><br>
+        <!-- <label for="lname">Last name:</label><br>
+        <input type="text" id="lname" name="lname"> -->
+
+        <input type="submit" value="Submit">
+    </form>
+
+{% endblock %}
