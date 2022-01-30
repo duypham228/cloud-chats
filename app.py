@@ -12,7 +12,7 @@ now = datetime.now()
 date = now.strftime("%Y")+"-"+now.strftime("%m")+"-"+now.strftime("%d")
 test_date = '2022-01-30'
 params = {
-  'access_key': 'b65e03793d485c13e775c51562bd4bd5'
+  'access_key': 'ca97067f353996f37afa2117c9107b37'
 }
 flight_information  = {}
 
@@ -109,9 +109,9 @@ def guide():
     location = lat + "," + lng
 
     # Weather Forecast guide
+    # Weather
     observation = mgr.weather_at_place(city)
     w = observation.weather
-
     status = w.status
     dstatus = w.detailed_status         # 'clouds'
     wind = w.wind()                  # {'speed': 4.6, 'deg': 330}
@@ -123,6 +123,24 @@ def guide():
     # forecast = mgr.forecast_at_place(city, 'daily')
     # # print(forecast.when_clear())
 
+    # Forecast
+    api_url = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lng + "&exclude=minutely,hourly&appid=" + weather_key
+    api_result = requests.get(api_url)
+    api_response = api_result.json()
+    daily = api_response["daily"]
+    # print(daily)
+    temps = []
+    days = []
+    
+    for i in range(len(daily)):
+        temp = daily[i]["temp"]["day"]
+        print(temp)
+        temps += [temp]
+        days += [i + 1]
+    legend = "Forecast 7 days"
+    print("HEREEEEE")
+    print(temps)
+    print(days)
 
     # Restaurant guide
     restaurants_result  = gmaps.places_nearby(location=location, radius = 10000, type="restaurant")
@@ -139,7 +157,7 @@ def guide():
 
     weather = {"city": city, "status": status, "dstatus": dstatus, "wind": wind, "humidity": humidity, "temp": temp, "visibility": visibility}
     # print(weather)
-    return render_template("guide.html", weather=weather, restaurants=restaurants, pois=pois)
+    return render_template("guide.html", weather=weather, restaurants=restaurants, pois=pois, values=temps, labels=days, legend=legend)
 
 @app.route('/faq', methods = ["GET"])
 def faq():
