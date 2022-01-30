@@ -120,7 +120,18 @@ def guide():
     lat = (r.json())["airport"]["latitude"]
     lng = (r.json())["airport"]["longitude"]
     location = lat + "," + lng
+    import requests
+    url = "https://best-booking-com-hotel.p.rapidapi.com/booking/best-accommodation"
 
+    querystring = {"cityName":city,"countryName":r.json()["airport"]["country"]["name"]}
+
+    headers = {
+        'x-rapidapi-host': "best-booking-com-hotel.p.rapidapi.com",
+        'x-rapidapi-key': "4890644ae1mshc232a31fd63309fp1c1336jsn316606e2dd09"
+        }
+
+    response = requests.request("GET", url, headers=headers, params=querystring)
+    hotels = response.json()
     # Weather Forecast guide
     # Weather
     observation = mgr.weather_at_place(city)
@@ -167,10 +178,10 @@ def guide():
     # Point of interest guide
     pois_result  = gmaps.places_nearby(location=location, radius = 10000, type="point_of_interest")
     pois = pois_result["results"]
-
+    print(hotels)
     weather = {"city": city, "status": status, "dstatus": dstatus, "wind": wind, "humidity": humidity, "temp": temp, "visibility": visibility}
     # print(weather)
-    return render_template("guide.html", weather=weather, restaurants=restaurants, pois=pois, values=temps, labels=days, legend=legend)
+    return render_template("guide.html", weather=weather, restaurants=restaurants, pois=pois, values=temps, labels=days, legend=legend, hotels=hotels)
 
 @app.route('/faq', methods = ["GET"])
 def faq():
