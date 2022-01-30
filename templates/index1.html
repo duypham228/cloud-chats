@@ -27,16 +27,41 @@
     <link href="https://fonts.googleapis.com/css?family=Questrial&display=swap" rel="stylesheet">
     <!-- Bulma Version 0.9.0-->
     <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.0/css/bulma.min.css" />
-    <link rel="stylesheet" type="text/css" href="../css/login.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/index.css">
 </head>
+<<<<<<< HEAD:templates/index.html
+<body>
+    <section class="hero background is-fullheight">
+=======
 
 <body> 
     <section class="hero has-background-info is-fullheight">
+>>>>>>> 1abd1130d4d8db158707352bea5a63bc1c52dc89:templates/index1.html
         <div class="hero-body">
             <div class="container has-text-centered">
                 <div class="column is-4 is-offset-4">
                     <h3 class="title has-text-white">Flight Number</h3>
                     <hr class="login-hr">
+<<<<<<< HEAD:templates/index.html
+                    <p class="subtitle has-text-white">please enter your flight IATA to proceed.</p>
+                    <div class="box">
+                        <figure class="avatar">
+                        </figure>
+                        <form method="POST">
+                            <div class="field">
+                                <div class="control">
+                                    <input class="input is-large" placeholder="Flight IATA" name = "flight-entry" autofocus="">
+                                </div>
+                            </div>
+                            </div>                        </form>
+                        <div class="notification is-info {{hidden}}">
+                                <p>Flight Information for <strong>{{flight_information["flight"]["iata"]}}</p>
+                                <ul>
+                                   <li>Arrival Airport: <strong>{{flight_information["arrival"]["airport"]}}</strong></li>
+                                   <li>Arrival Time: <strong>{{flight_information["arrival"]["estimated"]}}</strong></li>
+                                   <li>on Airline: <strong>{{flight_information["airline"]["name"]}}</strong></li>
+                                </ul>
+=======
                     <p class="subtitle has-text-white">Please enter your flight number to proceed.</p>
                     <div class="box" id="lol">
                      
@@ -49,15 +74,33 @@
                             </div>
                             <button id="submit" class="button is-block is-info is-large is-fullwidth" id="submit">enter your flight portal <i class="fa fa-sign-in" aria-hidden="true"></i></button>
                         </form>
+>>>>>>> 1abd1130d4d8db158707352bea5a63bc1c52dc89:templates/index1.html
                     </div>
-                    <p class="has-text-white">
-                        <a href="../">Need Help?</a>
-                    </p>
+                    <button class="button is-fullwidth is-link {{hidden}}">Enter Flight Portal 
+
+                    </button>                        </div>
                 </div>
             </div>
         </div>
     </section>
     <script async type="text/javascript" src="../js/bulma.js"></script>
+    <script type='text/javascript'>
+        $(document).ready(function(){
+            $('.userinfo').click(function(){
+                var userid = $(this).data('id');
+                $.ajax({
+                    url: '/ajaxfile',
+                    type: 'post',
+                    data: {userid: userid},
+                    success: function(data){ 
+                        $('.modal-body').html(data); 
+                        $('.modal-body').append(data.htmlresponse);
+                        $('#empModal').modal('show'); 
+                    }
+                });
+            });
+        });
+        </script>
 </body>
 
 </html>
