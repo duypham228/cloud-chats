@@ -36,7 +36,7 @@
             <div class="column" id="fix">
               <div class="box">
                 <figure id="icon" class="image is-96x96">
-                  <img src="/./assets/images/chat.png">
+                  <img src="/./static/assets/images/chat.png">
                 </figure>
                 <br>
                 <strong>Chat Room</strong>
@@ -45,7 +45,7 @@
             <div class="column" id="fix">
               <div class="box">
                 <figure id="icon" class="image is-96x96">
-                  <img src="/./assets/images/assist.png">
+                  <img src="/./static/assets/images/assist.png">
                 </figure>
                 <br>
                 <strong>Attendant Support</strong>
@@ -54,7 +54,7 @@
             <div class="column" id="fix">
               <div class="box">
                 <figure id="icon" class="image is-96x96">
-                  <img src="/./assets/images/guide.png">
+                  <img src="/./static/assets/images/guide.png">
                 </figure>
                 <br>
                 <strong>Travel Guide</strong>
@@ -63,7 +63,7 @@
             <div class="column" id="fix">
               <div class="box">
                 <figure id="icon" class="image is-96x96">
-                  <img src="/./assets/images/faq.png">
+                  <img src="/./static/assets/images/faq.png">
                 </figure>
                 <br>
                 <strong>FAQ</strong>
@@ -72,27 +72,29 @@
       </div>
     </section>
 
-    <section class="section has-text-centered" style="background-color:#f0f0f8;">
-      <div class="card">
-        <div class="card-content">
-          <div class="content">
-            <h1 class="title is-2">
-              Flight Information
-            </h1>
-            <br></div>
-            <h2 class="title is-5 is-spaced">
-              Saturday, January 29, 2023
-            </h2>
-            
-            <h3 class="title is-3 is-spaced">
-              DFW  &nbsp  &nbsp  ➤  &nbsp &nbsp HOU
-            </h3>
-            <h4 class="subtitle is-6">
-              Dallas Forth Worth International to Houston George Bush International
-            </h4>
-          </div>
+  <section class="section has-text-centered" style="background-color: #FAFAFF;">
+    <div class="card">
+      <div class="card-content">
+        <div class="content">
+          <h1 class="title is-2">
+            Flight IATA {{flight_information["flight"]["iata"]}}
+          </h1>
+          <br></div>
+          <h2 class="title is-5 is-spaced">
+            {{flight_information["arrival"]["estimated"]}}
+          </h2>
+          
+          <h3 class="title is-3 is-spaced">
+            {{flight_information["departure"]["iata"]}}  &nbsp  &nbsp  ➤  &nbsp &nbsp {{flight_information["arrival"]["iata"]}}
+          </h3>
+          <h4 class="subtitle is-6">
+            {{flight_information["departure"]["airport"]}} to {{flight_information["arrival"]["airport"]}}
+          </h4>
         </div>
       </div>
+    </div>
+
+    <section class="section has-text-centered" style="background-color:#f0f0f8;">
       
       <div class="card" style="margin-top: 20px;">
         <div class="card-content">
