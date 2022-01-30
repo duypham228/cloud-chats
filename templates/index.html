@@ -28,8 +28,9 @@
                             </div>
                         </form>
                         <div class="notification is-info {{hidden}}">
-                                <p>Flight Information for <strong>{{flight_information["flight"]["iata"]}}</p>
+                                <p>Flight Information for <strong>{{flight_information["flight"]["iata"]}}</strong></p>
                                 <ul>
+                                  <li>Departure Airport: <strong>{{flight_information["departure"]["airport"]}}</strong></li>
                                    <li>Arrival Airport: <strong>{{flight_information["arrival"]["airport"]}}</strong></li>
                                    <li>Arrival Time: <strong>{{flight_information["arrival"]["estimated"]}}</strong></li>
                                    <li>on Airline: <strong>{{flight_information["airline"]["name"]}}</strong></li>
