@@ -12,16 +12,8 @@ params = {
 api_result = requests.get('http://api.aviationstack.com/v1/flights', params)
 api_response = api_result.json()
 
-<<<<<<< HEAD
 print(api_response["data"])
 for flights in api_response["data"]:
     if flights["flight_date"] == date:
         flight_information = flights
 
-=======
-api_response = str(api_response)
-
-api_response = api_response.split(',')
-
-print(*api_response, sep = "\n")
->>>>>>> 1abd1130d4d8db158707352bea5a63bc1c52dc89
