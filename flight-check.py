@@ -22,4 +22,5 @@ def get_date_object(date_string):
 
 now = datetime.now()
 flight_time = (get_date_object("2022-01-29T10:11:00+00:00"))
+flight_time.time
 print(flight_time.strftime('%H:%M:%S'))

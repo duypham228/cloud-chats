@@ -6,10 +6,24 @@ import json
 app = Flask(__name__, static_url_path='/static')
 now = datetime.now()
 date = now.strftime("%Y")+"-"+now.strftime("%m")+"-"+now.strftime("%d")
+test_date = '2022-01-29'
 params = {
-  'access_key': '2d81d1352add1055528f544eb552ac04',
+  'access_key': '6982c8f3d7c66ea30604f89bfbc58608'
 }
 flight_information  = {}
+
+def strip_time_string(time_string):
+    time_string = (time_string.split("T")[1]).split("+")[0]
+    time_string = datetime.strptime(time_string,"%H:%M:%S")
+    return time_string
+
+
+def calc_now_time():
+    now_time = datetime.now()
+    current_time = now_time.strftime("%H:%M:%S")
+    current_time=datetime.strptime(current_time,"%H:%M:%S")
+    return current_time
+
 def find_city(iata):
     params = {
     "key":"c71fff2ce5",
@@ -27,13 +41,18 @@ def start():
         api_response = api_result.json()
         global flight_information
         for flights in api_response["data"]:
-            if flights["flight_date"] == date:
+            if flights["flight_date"] == test_date:
                 flight_information = flights
         hidden = "" if flight_information is not None else "is-hidden"
+        arrival = (strip_time_string(flight_information["arrival"]["estimated"])) - calc_now_time()
+        print("arrival "+str(arrival))
+        flight_information["departure"]["scheduled"] = datetime.strftime(strip_time_string(flight_information["departure"]["scheduled"]),"%H:%M:%S")
+        flight_information["arrival"]["estimated"] = datetime.strftime((strip_time_string(flight_information["arrival"]["estimated"])),"%H:%M:%S")
+        print(flight_information["arrival"]["estimated"] )
         print(flight_information)
-        return render_template('index.html', flight_information=flight_information, hidden = hidden, placeholder = params["flight_iata"])
+        return render_template('index.html', flight_information=flight_information, hidden = hidden, placeholder = params["flight_iata"], arrival = arrival)
     else:
-        flight_information = {'flight': {'iata': None}, 'arrival': {'airport': None, 'estimated': None, 'name': None}, 'airline':{'name':None}}
+        flight_information = {'flight': {'iata': None}, 'arrival': {'airport': None, 'estimated': None, 'name': None},'departure':{'airport':None},'airline':{'name':None}}
         return render_template('index.html', hidden="is-hidden", flight_information=flight_information, placeholder="Enter Flight IATA")
     
 @app.route('/dashboard', methods = ["GET"])

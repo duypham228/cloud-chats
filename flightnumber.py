@@ -5,8 +5,8 @@ now = datetime.now()
 
 date = now.strftime("%Y")+"-"+now.strftime("%m")+"-"+now.strftime("%d")
 params = {
-  'access_key': 'd7c3fddb391eaebbf5f869ba00a784b8',
-  'flight_iata': 'NK703',
+  'access_key': '6982c8f3d7c66ea30604f89bfbc58608',
+  'flight_iata': 'AA4010',
 }
 
 api_result = requests.get('http://api.aviationstack.com/v1/flights', params)
