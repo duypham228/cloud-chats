@@ -10,6 +10,14 @@ params = {
   'access_key': '2d81d1352add1055528f544eb552ac04',
 }
 
+def find_city(iata):
+    params = {
+    "key":"c71fff2ce5",
+    "secret": "b109d0741b40414"
+    }
+    r = requests.get("https://www.air-port-codes.com/api/v1/single?iata=IAH",params=params)
+    return r
+
 @app.route('/', methods = ["GET","POST"])
 def start():
     if request.method == "POST":
@@ -23,11 +31,15 @@ def start():
                 flight_information = flights
         hidden = "" if flight_information is not None else "is-hidden"
         print(flight_information)
-        return render_template('index.html', flight_information=flight_information, hidden = hidden)
+        return render_template('index.html', flight_information=flight_information, hidden = hidden, placeholder = params["flight_iata"])
     else:
         flight_information = {'flight': {'iata': None}, 'arrival': {'airport': None, 'estimated': None, 'name': None}, 'airline':{'name':None}}
-        return render_template('index.html', hidden="is-hidden", flight_information=flight_information)
+        return render_template('index.html', hidden="is-hidden", flight_information=flight_information, placeholder="Enter Flight IATA")
     
+@app.route('/dashboard', methods = ["GET","POST"])
+def dashboard():
+    return render_template("dashboard.html")
+
 
 if __name__ == "__main__":
     app.run(debug=True)

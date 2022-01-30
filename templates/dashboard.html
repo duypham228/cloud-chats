@@ -1,65 +1,117 @@
-<head>
+<!DOCTYPE html>
+<html>
+  <style>
+    #lower{
+      background-color: #cccccc;
+    }
+
+
+    #fix{
+      margin: 50px;
+    }
+
+    .box{
+      width:200px;
+      height: 200px;
+    }
+
+    #icon{
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    #flight-info{
+      background-color: white;
+    }
+  </style>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dashboard</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
-</head>
-<body>
-    <nav class="navbar" role="navigation" aria-label="main navigation">
-        <div class="navbar-brand">
-          <a class="navbar-item" href="https://bulma.io">
-            <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
-          </a>
-      
-          <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-          </a>
-        </div>
-      
-        <div id="navbarBasicExample" class="navbar-menu">
-          <div class="navbar-start">
-            <a class="navbar-item">
-              Home
-            </a>
-      
-            <a class="navbar-item">
-              Documentation
-            </a>
-      
-            <div class="navbar-item has-dropdown is-hoverable">
-              <a class="navbar-link">
-                More
-              </a>
-      
-              <div class="navbar-dropdown">
-                <a class="navbar-item">
-                  About
-                </a>
-                <a class="navbar-item">
-                  Jobs
-                </a>
-                <a class="navbar-item">
-                  Contact
-                </a>
-                <hr class="navbar-divider">
-                <a class="navbar-item">
-                  Report an issue
-                </a>
-              </div>
+  </head>
+  <body>
+  <section id="lower" class="section" style="background-color: #FAFAFF;">
+    <div class="columns is-mobile is-centered">
+        <div class="columns has-text-centered">
+          <div class="column" id="fix">
+            <div class="box">
+              <figure id="icon is-centered" class="image is-256x256">
+                <img src="/./assets/images/chat.png">
+              </figure>
+              <strong>Flight Chat Room</strong>
             </div>
           </div>
-      
-          <div class="navbar-end">
-            <div class="navbar-item">
-              <div class="buttons">
-                <a class="button is-primary">
-                  <strong>Sign up</strong>
-                </a>
-                <a class="button is-light">
-                  Log in
-                </a>
-              </div>
+          <div class="column" id="fix">
+            <div class="box">
+              <figure id="icon is-centered" class="image is-256x256">
+                <img src="/./assets/images/assist.png">
+              </figure>
+              <strong>Attendant Support</strong>
             </div>
           </div>
+          <div class="column" id="fix">
+            <div class="box">
+              <figure id="icon" class="image is-256x256">
+                <img src="/./assets/images/guide.png">
+              </figure>
+              <strong>Travel Guide</strong>
+            </div>
+          </div>
+          <div class="column" id="fix">
+            <div class="box">
+              <figure id="icon" class="image is-256x256">
+                <img src="/./assets/images/faq.png">
+              </figure>
+              <strong>FAQ</strong>
+            </div>
         </div>
-      </nav>
-</body>
+    </div>
+  </section>
+
+  <section class="section has-text-centered" style="background-color: #FAFAFF;">
+    <div class="card">
+      <div class="card-content">
+        <div class="content">
+          <h1 class="title is-2">
+            Flight Information
+          </h1>
+          <br></div>
+          <h2 class="title is-5 is-spaced">
+            Saturday, January 29, 2023
+          </h2>
+          
+          <h3 class="title is-3 is-spaced">
+            DFW  &nbsp  &nbsp  ➤  &nbsp &nbsp HOU
+          </h3>
+          <h4 class="subtitle is-6">
+            Dallas Forth Worth International to Houston George Bush International
+          </h4>
+        </div>
+      </div>
+    </div>
+    
+    <div class="card" style="margin-top: 20px;">
+      <div class="card-content">
+        <div class="content">
+          <h1 class="title is-2">
+            Flight Information
+          </h1>
+          <br></div>
+          <h2 class="title is-5 is-spaced">
+            Saturday, January 29, 2023
+          </h2>
+          
+          <h3 class="title is-3 is-spaced">
+            DFW  &nbsp  &nbsp  ➤  &nbsp &nbsp HOU
+          </h3>
+          <h4 class="subtitle is-6">
+            Dallas Forth Worth International to Houston George Bush International
+          </h4>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  </body>
+</html>

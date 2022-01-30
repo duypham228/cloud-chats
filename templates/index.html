@@ -1,27 +1,10 @@
 <!DOCTYPE html>
 <html>
- <style>
-    .hero-body{
-        background-image: url("/./assets/images/skyHome41.jpg");
-        background-size: 1500px 900px;
-        
-    }       
-    
-    #lol{
-        background-color: transparent;
-    }
-
-    #submit{
-        background-color: #3a3cba;
-        border-radius: 20px;
-    }
-</style>
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>TravelChats</title>
+    <title>Cloud Chats ☁️</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet"> -->
     <link href="https://fonts.googleapis.com/css?family=Questrial&display=swap" rel="stylesheet">
@@ -34,19 +17,16 @@
         <div class="hero-body">
             <div class="container has-text-centered">
                 <div class="column is-4 is-offset-4">
-                    <h3 class="title has-text-white">Flight Number</h3>
+                    <h3 class="title has-text-white">Cloud Chat ✈︎</h3>
                     <hr class="login-hr">
                     <p class="subtitle has-text-white">please enter your flight IATA to proceed.</p>
-                    <div class="box">
-                        <figure class="avatar">
-                        </figure>
                         <form method="POST">
                             <div class="field">
                                 <div class="control">
-                                    <input class="input is-large" placeholder="Flight IATA" name = "flight-entry" autofocus="">
+                                    <input class="input is-large" placeholder="{{placeholder}}" name = "flight-entry" autofocus="">
                                 </div>
                             </div>
-                            </div>                        </form>
+                        </form>
                         <div class="notification is-info {{hidden}}">
                                 <p>Flight Information for <strong>{{flight_information["flight"]["iata"]}}</p>
                                 <ul>
@@ -55,31 +35,13 @@
                                    <li>on Airline: <strong>{{flight_information["airline"]["name"]}}</strong></li>
                                 </ul>
                     </div>
-                    <button class="button is-fullwidth is-link {{hidden}}">Enter Flight Portal 
-
-                    </button>                        </div>
+                    <a href = {{url_for("dashboard")}}><button class="button is-fullwidth is-link {{hidden}}">Confirm & Enter Flight Portal 
+                    </button></a>                       </div>
                 </div>
             </div>
         </div>
     </section>
     <script async type="text/javascript" src="../js/bulma.js"></script>
-    <script type='text/javascript'>
-        $(document).ready(function(){
-            $('.userinfo').click(function(){
-                var userid = $(this).data('id');
-                $.ajax({
-                    url: '/ajaxfile',
-                    type: 'post',
-                    data: {userid: userid},
-                    success: function(data){ 
-                        $('.modal-body').html(data); 
-                        $('.modal-body').append(data.htmlresponse);
-                        $('#empModal').modal('show'); 
-                    }
-                });
-            });
-        });
-        </script>
 </body>
 
 </html>
